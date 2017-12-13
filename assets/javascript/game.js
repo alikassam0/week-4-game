@@ -8,13 +8,16 @@ var wins = 0;
 var losses = 0;
 var currentScore = 0;
 
+
 function startGame(){
+
+	$("#currentScore").html(currentScore);
 
 	$(".crystals").empty();
 
 	targetScore = Math.floor(Math.random() * 69) + 30;
 	console.log(targetScore); 
-	$("#result").html("Target Score: " + targetScore);
+	$("#targetScore").html(targetScore);
 
 
 
@@ -29,7 +32,14 @@ function startGame(){
 				"data-randomValue": randomValue
 		})
 
-		crystal.html(randomValue);
+
+
+		crystal.css({
+			"background-image": "url(assets/images/red_diamond.jpg)",
+			"background-size": "cover",
+			"background-position": "center"
+		})
+
 		
 		$(".crystals").append(crystal);
 
@@ -37,26 +47,26 @@ function startGame(){
 }
 startGame();
 
-$(".crystalSquares").on("click", function(){
+$(document).on("click", ".crystalSquares", function(){
 	console.log($(this));
 
 	var crystalValue = parseInt($(this).attr("data-randomValue"));
 
 	currentScore = currentScore + crystalValue;
-	console.log("current score is " + currentScore);
+	$("#currentScore").html(currentScore);
 
 	if (currentScore > targetScore) {
 		console.log("You lose")
 		losses++;
 		$("#losses").html("losses: " + losses)
-		previous = 0;
+		currentScore = 0;
 		startGame();
 	} 
 	else if (currentScore === targetScore){
 		console.log("You win!");
 		wins++;
 		$("#wins").html("Wins: " + wins);
-		previous = 0;
+		currentScore = 0;
 		startGame();
 	}
 
