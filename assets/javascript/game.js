@@ -56,14 +56,14 @@ $(document).on("click", ".crystalSquares", function(){
 	$("#currentScore").html(currentScore);
 
 	if (currentScore > targetScore) {
-		console.log("You lose")
+		alert("You lose.  Better luck next time")
 		losses++;
 		$("#losses").html("losses: " + losses)
 		currentScore = 0;
 		startGame();
 	} 
 	else if (currentScore === targetScore){
-		console.log("You win!");
+		alert("Congratulations! You win!");
 		wins++;
 		$("#wins").html("Wins: " + wins);
 		currentScore = 0;
